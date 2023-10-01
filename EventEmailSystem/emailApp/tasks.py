@@ -12,6 +12,9 @@ EVENT_CHOICES_DICT = dict(EVENT_CHOICES)
 
 
 def send_event_email(event_id):
+    """
+    function will send email according to event
+    """
     params = {"event_id": event_id}
     event = EVENT_CHOICES_DICT[event_id]
     try:

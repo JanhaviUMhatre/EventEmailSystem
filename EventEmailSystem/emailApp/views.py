@@ -4,7 +4,15 @@ from .models import Employee, Event
 from datetime import datetime
 
 class EmployeeEventData(APIView):
+    """
+    get rest api for fetching employee details and accordingly event as per request params
 
+    if event id 1 then data will be fetched for birthday
+    else for 2, it will be work anniversary
+
+    Input - event id 1/2
+    output - list of employee data and template according to event
+    """
     def get(self, request):
         event_id = request.GET["event_id"]
         current_date = datetime.now()

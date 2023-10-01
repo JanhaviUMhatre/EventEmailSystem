@@ -3,6 +3,9 @@ from datetime import datetime
 from .constants import EVENT_CHOICES
 
 class Employee(models.Model):
+    """
+    employee data with basic details
+    """
     id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -19,6 +22,11 @@ class Employee(models.Model):
 
 
 class Event(models.Model):
+    """
+    events - birthday / work anniversary 
+    can add more events 
+    every event will have unique id
+    """
     id = models.AutoField(primary_key=True)
     type = models.CharField(choices=EVENT_CHOICES, default="1", max_length=255)
     template = models.TextField()
@@ -29,6 +37,13 @@ class Event(models.Model):
 
 
 class EventLog(models.Model):
+    """
+    new row will be added once cron send email will execute
+    description will be updated when there is no data for current date
+    success will set to false if cron fails to send email
+    acccordingly error and employee array will get updated
+    employee array will have id of employee for which process failed
+    """
     id = models.AutoField(primary_key=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     error = models.TextField(null=True, default="[]")
@@ -39,6 +54,9 @@ class EventLog(models.Model):
 
 
 class EventData(models.Model):
+    """
+    entry for every email sent for employee
+    """
     id = models.AutoField(primary_key=True)
     employee_object = models.ForeignKey(Employee, null=True, on_delete=models.CASCADE)
     event_type = models.CharField(choices=EVENT_CHOICES, max_length=255)

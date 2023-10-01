@@ -55,8 +55,8 @@ MIDDLEWARE = [
 
 
 CRONJOBS = [
-    ('*/2 * * * *', 'emailApp.tasks.send_event_email', ["1"]),
-    ('*/2 * * * *', 'emailApp.tasks.send_event_email', ["2"]),
+    ('0 11 * * *', 'emailApp.tasks.send_event_email', ["1"]),
+    ('0 11 * * *', 'emailApp.tasks.send_event_email', ["2"]),
 ]
 
 ROOT_URLCONF = 'EventEmailSystem.urls'
