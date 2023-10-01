@@ -2,9 +2,10 @@ import requests
 from django.conf import settings
 import json
 from django.utils.html import strip_tags
-from .models import *
+from .models import EventData, EventLog, Employee
 from .mailer import send_mail
 from .constants import EVENT_CHOICES
+from datetime import datetime
 
 BASE_URL = settings.BASE_URL
 EVENT_CHOICES_DICT = dict(EVENT_CHOICES) 
